@@ -6,6 +6,7 @@ import math
 def get_comic(filepath):
     url = "https://xkcd.com/info.0.json"
     response = requests.get(url=url)
+    response.raise_for_status()
     number_last_comic = response.json()["num"]
     random_number = math.ceil(random.uniform(0, number_last_comic))
     url = f"https://xkcd.com/{random_number}/info.0.json"
