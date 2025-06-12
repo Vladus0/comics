@@ -1,12 +1,13 @@
 import telegram
 from dotenv import load_dotenv
 import os
-from main import get_comic
+from get_comic import get_comic
 import argparse
 
 
 def main():
     load_dotenv()
+    os.makedirs('imgs', exist_ok=True)
     token = os.environ['TELEGRAM_TOKEN']
     chat_id = os.environ["TG_CHAT_ID"]
     bot = telegram.Bot(token=token)

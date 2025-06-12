@@ -1,13 +1,9 @@
 import requests
-import os
 import random
 import math
 
 
 def get_comic(filepath):
-    os.makedirs('imgs', exist_ok=True)
-    filepath = filepath
-
     url = "https://xkcd.com/info.0.json"
     response = requests.get(url=url)
     number_last_comic = response.json()["num"]
