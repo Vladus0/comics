@@ -1,8 +1,8 @@
 import telegram
 from dotenv import load_dotenv
 import os
-from get_comic import get_comic
-import argparse
+from get_random_comic import get_random_comic
+import os.path
 
 
 def main():
@@ -11,8 +11,8 @@ def main():
     token = os.environ['TELEGRAM_TOKEN']
     chat_id = os.environ["TG_CHAT_ID"]
     bot = telegram.Bot(token=token)
-    filepath = "imgs/img.png"
-    alt = get_comic(filepath)
+    filepath = os.path.join('imgs', 'img.png')
+    alt = get_random_comic(filepath)
     try:
         with open(f'{filepath}', 'rb') as img:
             bot.send_photo(chat_id=chat_id, photo=img, caption=alt)

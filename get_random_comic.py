@@ -2,7 +2,7 @@ import requests
 import random
 
 
-def get_comic(filepath):
+def get_random_comic(filepath):
     url = "https://xkcd.com/info.0.json"
     response = requests.get(url=url)
     response.raise_for_status()
@@ -11,13 +11,13 @@ def get_comic(filepath):
     url = f"https://xkcd.com/{random_number}/info.0.json"
     response = requests.get(url=url)
     response.raise_for_status()
-    comic_responce = response.json()
-    img_url = comic_responce["img"]
-    comic = requests.get(url=img_url)
-    comic.raise_for_status()
+    comic_response = response.json()
+    img_url = comic_response["img"]
+    comics_img = requests.get(url=img_url)
+    comics_img.raise_for_status()
 
-    alt = comic_responce["alt"]
+    alt = comic_response["alt"]
     with open(filepath, 'wb') as file:
-        file.write(comic.content)
+        file.write(comics_img.content)
 
     return alt
